@@ -4,8 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVG Graphics | Graphic Intelligence</title>
-  <meta name="description" content="www.avg.graphics - Graphic Intelligence. Print & Packaging, Socio Digital & Broadcasting.">
+  <meta name="description" content="www.avg.graphics - Graphic Intelligence. Print Packaging Pre-Media, Socio Digital & Broadcasting.">
   <link rel="icon" type="image/png" href="avg-logo.png">
+  
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="AVG Graphics | Graphic Intelligence">
+  <meta property="og:description" content="Print & Packaging Pre-Media Pipeline • Socio Digital & Broadcasting. www.avg.graphics">
+  <meta property="og:image" content="avg-logo.png">
+  <meta property="og:url" content="https://www.avg.graphics">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=Playfair+Display:wght@700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -39,7 +48,10 @@
   </script>
 
   <style>
-    /* Compact 20-Second Expo View: No Scroll, High Density */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     html, body {
       background-color: #070a12;
       color: #f1f5f9;
@@ -47,191 +59,525 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
+      min-height: 100vh;
+      width: 100%;
     }
 
     .topic-item {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 13px;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
+      width: 100%;
+      min-height: 26px;
+      line-height: 1.15;
+      transition: all 0.15s ease;
     }
 
     .topic-item:hover {
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.2);
     }
+
+    /* True 16:9 Cinema Rectangle Video Box - Never Squished, Never Collapsed */
+    .video-rectangle-box {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 16 / 9;
+      min-height: 175px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000000;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 640px) {
+      .video-rectangle-box {
+        max-width: 100%;
+        min-height: 180px;
+      }
+    }
+
+    .video-rectangle-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Full Image Card Styling - True Portrait (3:4) Ratio, No Captions, Clean & Bold */
+    .full-image-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #050811;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .full-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+
+    .full-image-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .full-image-card-cyan:hover {
+      box-shadow: 0 6px 16px -2px rgba(0, 240, 255, 0.4);
+      border-color: #00f0ff;
+    }
+
+    .full-image-card-orange:hover {
+      box-shadow: 0 6px 16px -2px rgba(255, 92, 40, 0.4);
+      border-color: #ff5c28;
+    }
+
+    /* Star animation */
+    @keyframes starPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.7)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 20px rgba(245, 158, 11, 1)); }
+    }
+    .animate-star-pulse {
+      animation: starPulse 2.5s infinite ease-in-out;
+    }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col justify-between p-2 sm:p-4 text-slate-100">
+<body class="min-h-screen flex flex-col justify-between p-2 sm:p-2.5 text-slate-100">
 
-  <!-- TOP HEADER (COMPACT) -->
-  <header class="flex items-center justify-between px-3 py-1.5 border-b border-white/10 mb-2">
-    <div class="flex items-center gap-3">
-      <img src="avg-logo.png" alt="AVG Graphics Logo" class="h-8 sm:h-9 w-auto object-contain">
-    </div>
-    <div class="flex items-center gap-4 text-xs font-mono">
-      <span class="text-slate-400 hidden sm:inline">Print &amp; Packaging &bull; Socio Digital &amp; Broadcasting</span>
-      <a href="https://www.avg.graphics" target="_blank" class="px-2.5 py-1 rounded bg-white/10 text-avg-cyan font-bold hover:bg-white/20">
-        www.avg.graphics &rarr;
+  <!-- ==================================================================== -->
+  <!-- TOP HEADER ROW:                                                      -->
+  <!-- LEFT: LOGO | CENTER: GRAPHIC INTELLIGENCE + 4 LINKS | RIGHT: CONTACTS-->
+  <!-- ==================================================================== -->
+  <header class="w-full max-w-7xl mx-auto px-2 sm:px-3 py-1.5 flex flex-col md:flex-row items-center justify-between gap-2 border-b border-white/10 shrink-0 mb-1">
+    
+    <!-- LEFT SIDE: AVG GRAPHICS LOGO + 20% DISCOUNT STAR BADGE -->
+    <div class="flex items-center justify-center md:justify-start gap-2.5 w-full md:w-1/4 shrink-0">
+      <a href="https://www.avg.graphics" target="_blank" class="flex items-center gap-2 group shrink-0" title="AVG Graphics Official">
+        <img src="avg-logo.png" alt="AVG Graphics Logo" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105">
       </a>
+      <!-- 20% DISCOUNT STAR OFFER BADGE IN TOP -->
+      <button onclick="toggleOfferModal()" 
+              class="animate-star-pulse flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 font-black shadow-[0_0_18px_rgba(245,158,11,0.55)] border border-yellow-200 hover:scale-105 active:scale-95 transition-all cursor-pointer shrink-0" 
+              title="Click to view 20% Global Expo Offer">
+        <span class="text-sm sm:text-base text-amber-950 leading-none">★</span>
+        <div class="flex flex-col text-left leading-none font-mono">
+          <span class="text-[7.5px] uppercase tracking-wider text-amber-950 font-extrabold">Global Offer</span>
+          <span class="text-[11px] sm:text-xs font-black text-black tracking-tight">20% DISCOUNT</span>
+        </div>
+      </button>
     </div>
+
+    <!-- CENTER: GRAPHIC INTELLIGENCE & 4 LINKS IN TOP -->
+    <div class="flex flex-col items-center justify-center text-center w-full md:w-2/4 shrink-0">
+      <div class="text-[9px] sm:text-[10px] font-mono tracking-widest text-slate-400 uppercase font-bold">
+        EXPERIENCE THE POWER OF
+      </div>
+      <h1 class="text-xl sm:text-2xl md:text-[27px] font-display font-extrabold uppercase tracking-tight text-white leading-none mt-0.5">
+        GRAPHIC <span class="text-avg-cyan">INTELLIGENCE</span>
+      </h1>
+      
+      <!-- 4 ECOSYSTEM PORTAL LINKS IN TOP -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[10px] sm:text-[10.5px] font-mono font-bold mt-1 text-slate-300">
+        <a href="https://www.avg.graphics" target="_blank" class="text-avg-cyan hover:underline transition-colors">www.avg.graphics</a>
+        <span class="text-white/20">&bull;</span>
+        <a href="https://www.minnalparithi.com" target="_blank" class="hover:text-white hover:underline transition-colors">www.minnalparithi.com</a>
+        <span class="text-white/20">&bull;</span>
+        <a href="https://www.360cc.org" target="_blank" class="hover:text-white hover:underline transition-colors">www.360cc.org</a>
+        <span class="text-white/20">&bull;</span>
+        <a href="https://www.369cc.org" target="_blank" class="hover:text-white hover:underline transition-colors">www.369cc.org</a>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE OF GRAPHIC INTELLIGENCE: BOLD CONTACT DETAILS -->
+    <div class="flex flex-wrap items-center justify-center md:justify-end gap-1.5 sm:gap-2 w-full md:w-1/4 shrink-0 font-mono">
+      <a href="tel:+919840401565" class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-white/5 border border-white/15 hover:border-avg-cyan hover:bg-white/10 text-white transition-all flex items-center gap-1 shadow-sm text-xs font-mono font-bold whitespace-nowrap">
+        <span class="text-avg-cyan font-black">&#9742;</span>
+        <span class="text-slate-400 font-semibold text-[10px]">IN:</span>
+        <span class="font-extrabold text-white tracking-wide">+91 9840401565</span>
+      </a>
+      <a href="tel:+971501840539" class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-white/5 border border-white/15 hover:border-avg-cyan hover:bg-white/10 text-white transition-all flex items-center gap-1 shadow-sm text-xs font-mono font-bold whitespace-nowrap">
+        <span class="text-avg-cyan font-black">&#9742;</span>
+        <span class="text-slate-400 font-semibold text-[10px]">UAE:</span>
+        <span class="font-extrabold text-white tracking-wide">+971 501840539</span>
+      </a>
+      <a href="mailto:gkp@avg.graphics" class="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded bg-avg-cyan/15 border border-avg-cyan/40 hover:bg-avg-cyan/25 text-avg-cyan transition-all flex items-center gap-1 shadow-sm text-xs font-mono font-extrabold whitespace-nowrap">
+        <span class="font-black">&#9993;</span>
+        <span>gkp@avg.graphics</span>
+      </a>
+      <button onclick="toggleFullscreen()" title="Toggle Fullscreen" class="hidden sm:flex px-1.5 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors items-center gap-1 text-[10px] font-mono">
+        <span>&#x26F6;</span>
+      </button>
+    </div>
+
   </header>
 
-  <!-- TITLE: GRAPHIC INTELLIGENCE (TIGHT SPACING) -->
-  <div class="text-center my-1">
-    <div class="text-[11px] font-mono tracking-widest text-slate-400 uppercase font-bold">
-      EXPERIENCE THE POWER OF
-    </div>
-    <h1 class="text-2xl sm:text-4xl font-display font-extrabold uppercase tracking-tight text-white leading-none">
-      GRAPHIC <span class="text-avg-cyan">INTELLIGENCE</span>
-    </h1>
-  </div>
-
-  <!-- MAIN 2 DEPARTMENTS (FITS IN 20 SECONDS / ZERO SCROLL) -->
-  <main class="grid grid-cols-1 gap-3 my-auto max-w-7xl mx-auto w-full">
+  <!-- ==================================================================== -->
+  <!-- MAIN VIEWPORT: PRINT & PACKAGING (LEFT) | SOCIO BROADCASTING (RIGHT) -->
+  <!-- ==================================================================== -->
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-2.5 max-w-7xl mx-auto w-full flex-1">
 
     <!-- ============================================================ -->
-    <!-- DEPARTMENT 1: PRINT & PACKAGING -->
+    <!-- LEFT SIDE: DEPARTMENT 1 - PRINT & PACKAGING                  -->
+    <!-- FLOW: 1. CONTENT -> 2. 16:9 VIDEO -> 3. FULL IMAGES (NO CAPT)-->
     <!-- ============================================================ -->
-    <div class="bg-avg-card border border-avg-cyan/40 rounded-xl p-3 sm:p-4 shadow-lg">
+    <div class="bg-avg-card border border-avg-cyan/40 rounded-xl p-2.5 sm:p-3 shadow-lg flex flex-col justify-between gap-1.5">
       
-      <!-- Dept Title -->
-      <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-avg-cyan"></span>
-          <h2 class="text-base sm:text-lg font-display font-bold text-white tracking-wide uppercase">
-            Print &amp; Packaging
-          </h2>
-        </div>
-        <span class="text-[11px] font-mono text-avg-cyan font-bold">Pre-Media Pipeline</span>
+      <!-- Dept Title (Removed "Pre-Media Pipeline") -->
+      <div class="flex items-center gap-2 pb-1 border-b border-white/10 shrink-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-avg-cyan"></span>
+        <h2 class="text-sm sm:text-base font-display font-bold text-white tracking-wide uppercase">
+          Print &amp; Packaging
+        </h2>
       </div>
 
-      <!-- Split: Left 6 Topics | Right Small Video -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
-        
-        <!-- Left: 6 Topics Only (No Descriptions, Compact 2-Col Grid) -->
-        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div class="topic-item">
-            <span class="font-mono text-xs font-bold text-sky-400 bg-sky-500/20 px-1.5 py-0.5 rounded">01</span>
-            <span class="text-white">Creative brief</span>
+      <!-- 1. FIRST: THE CONTENT (6 TOPICS IN 2 COLUMNS) -->
+      <div class="grid grid-cols-2 gap-1 shrink-0">
+        <div class="topic-item">
+          <span class="font-mono text-[9px] font-bold text-sky-400 bg-sky-500/20 px-1 rounded shrink-0">01</span>
+          <span class="text-white leading-tight truncate">Creative brief</span>
+        </div>
+        <div class="topic-item">
+          <span class="font-mono text-[9px] font-bold text-emerald-400 bg-emerald-500/20 px-1 rounded shrink-0">02</span>
+          <span class="text-white leading-tight truncate">Artwork</span>
+        </div>
+        <div class="topic-item">
+          <span class="font-mono text-[9px] font-bold text-amber-400 bg-amber-500/20 px-1 rounded shrink-0">03</span>
+          <span class="text-white leading-tight truncate">Adaptation</span>
+        </div>
+        <div class="topic-item">
+          <span class="font-mono text-[9px] font-bold text-blue-400 bg-blue-500/20 px-1 rounded shrink-0">04</span>
+          <span class="text-white leading-tight truncate">Prepress / Repro / PPM</span>
+        </div>
+        <div class="topic-item">
+          <span class="font-mono text-[9px] font-bold text-emerald-400 bg-emerald-500/20 px-1 rounded shrink-0">05</span>
+          <span class="text-white leading-tight truncate">Quality control</span>
+        </div>
+        <div class="topic-item">
+          <span class="font-mono text-[9px] font-bold text-amber-400 bg-amber-500/20 px-1 rounded shrink-0">06</span>
+          <span class="text-white leading-tight truncate">Delivery</span>
+        </div>
+      </div>
+
+      <!-- 2. NEXT: THE VIDEO (TRUE 16:9 RECTANGLE - NEVER SQUISHED) -->
+      <div class="w-full flex flex-col items-center justify-center shrink-0">
+        <div class="video-rectangle-box border border-avg-cyan/50">
+          <iframe 
+            id="p-and-p-video"
+            src="https://www.youtube-nocookie.com/embed/FG3LLdqjp3c?rel=0&modestbranding=1&playsinline=1" 
+            title="Print &amp; Packaging Showcase"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="w-full max-w-[360px] flex items-center justify-between text-[9px] font-mono text-slate-400 mt-0.5 px-1">
+          <span class="text-avg-cyan font-semibold">16:9 Cinema Reel</span>
+          <a href="https://youtu.be/FG3LLdqjp3c" target="_blank" class="hover:text-avg-cyan transition-colors flex items-center gap-1 font-semibold">
+            <span>Watch on YouTube</span>
+            <span>&nearr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. AND: FULL IMAGES (3:4 PORTRAIT PHOTOS - CLEAN, NO CAPTIONS) -->
+      <div class="bg-black/40 border border-white/10 rounded-lg p-1.5 shrink-0">
+        <div class="grid grid-cols-3 gap-2">
+          <!-- Photo 1: Luxury Carton -->
+          <div class="full-image-card full-image-card-cyan border border-white/20 p-1" onclick="openShowcaseModal(0)" title="Click to expand">
+            <img src="pkg1.jpg" alt="Packaging Showcase 1" loading="lazy">
           </div>
-          <div class="topic-item">
-            <span class="font-mono text-xs font-bold text-blue-400 bg-blue-500/20 px-1.5 py-0.5 rounded">04</span>
-            <span class="text-white">Prepress / Repro / PPM</span>
+          <!-- Photo 2: Flexible Pouch -->
+          <div class="full-image-card full-image-card-cyan border border-white/20 p-1" onclick="openShowcaseModal(1)" title="Click to expand">
+            <img src="pkg2.jpg" alt="Packaging Showcase 2" loading="lazy">
           </div>
-          <div class="topic-item">
-            <span class="font-mono text-xs font-bold text-emerald-400 bg-emerald-500/20 px-1.5 py-0.5 rounded">02</span>
-            <span class="text-white">Artwork</span>
-          </div>
-          <div class="topic-item">
-            <span class="font-mono text-xs font-bold text-emerald-400 bg-emerald-500/20 px-1.5 py-0.5 rounded">05</span>
-            <span class="text-white">Quality control</span>
-          </div>
-          <div class="topic-item">
-            <span class="font-mono text-xs font-bold text-amber-400 bg-amber-500/20 px-1.5 py-0.5 rounded">03</span>
-            <span class="text-white">Adaptation</span>
-          </div>
-          <div class="topic-item">
-            <span class="font-mono text-xs font-bold text-amber-400 bg-amber-500/20 px-1.5 py-0.5 rounded">06</span>
-            <span class="text-white">Delivery</span>
+          <!-- Photo 3: Luxury Label -->
+          <div class="full-image-card full-image-card-cyan border border-white/20 p-1" onclick="openShowcaseModal(2)" title="Click to expand">
+            <img src="pkg3.jpg" alt="Packaging Showcase 3" loading="lazy">
           </div>
         </div>
-
-        <!-- Right: Small Video Frame -->
-        <div class="lg:col-span-5">
-          <div class="rounded-lg overflow-hidden bg-black border border-avg-cyan/40 aspect-video w-full max-h-[175px] mx-auto shadow-md">
-            <iframe 
-              src="https://drive.google.com/file/d/1Gd91QwudIm1KSkwT8gSoXaAvO8YAFJl5/preview" 
-              title="Print & Packaging Video"
-              class="w-full h-full border-0" 
-              allow="autoplay; fullscreen" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
       </div>
 
     </div>
 
     <!-- ============================================================ -->
-    <!-- DEPARTMENT 2: SOCIO DIGITAL & BROADCASTING -->
+    <!-- RIGHT SIDE: DEPARTMENT 2 - SOCIO BROADCASTING                -->
+    <!-- FLOW: 1. CONTENT -> 2. 16:9 VIDEO -> 3. FULL IMAGES (NO CAPT)-->
     <!-- ============================================================ -->
-    <div class="bg-avg-card border border-avg-orange/40 rounded-xl p-3 sm:p-4 shadow-lg">
+    <div class="bg-avg-card border border-avg-orange/40 rounded-xl p-2.5 sm:p-3 shadow-lg flex flex-col justify-between gap-1.5">
       
-      <!-- Dept Title -->
-      <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-avg-orange"></span>
-          <h2 class="text-base sm:text-lg font-display font-bold text-white tracking-wide uppercase">
-            Socio Digital &amp; Broadcasting
-          </h2>
-        </div>
-        <span class="text-[11px] font-mono text-avg-orange font-bold">Omnichannel Media</span>
+      <!-- Dept Title (Removed "Omnichannel Media") -->
+      <div class="flex items-center gap-2 pb-1 border-b border-white/10 shrink-0">
+        <span class="w-2.5 h-2.5 rounded-full bg-avg-orange"></span>
+        <h2 class="text-sm sm:text-base font-display font-bold text-white tracking-wide uppercase">
+          Socio-Broadcasting &amp; Digital
+        </h2>
       </div>
 
-      <!-- Split: Left 6 Topics | Right Small Video -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
-        
-        <!-- Left: 6 Topics Only (No Descriptions, Compact 2-Col Grid) -->
-        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <div class="topic-item">
-            <span class="w-2 h-2 rounded-full bg-[#e2583e] shrink-0"></span>
-            <span class="text-white font-serifTitle">Magazine Publishing</span>
+      <!-- 1. FIRST: THE CONTENT (6 TOPICS IN 2 COLUMNS) -->
+      <div class="grid grid-cols-2 gap-1 shrink-0">
+        <div class="topic-item">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e2583e] shrink-0"></span>
+          <span class="text-white font-serifTitle leading-tight truncate">Magazine Publishing</span>
+        </div>
+        <div class="topic-item">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e2583e] shrink-0"></span>
+          <span class="text-white font-serifTitle leading-tight truncate">Social Media Despatch</span>
+        </div>
+        <div class="topic-item">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e2583e] shrink-0"></span>
+          <span class="text-white font-serifTitle leading-tight truncate">Digital Marketing</span>
+        </div>
+        <div class="topic-item">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e2583e] shrink-0"></span>
+          <span class="text-white font-serifTitle leading-tight truncate">Broadcasting</span>
+        </div>
+        <div class="topic-item">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e2583e] shrink-0"></span>
+          <span class="text-white font-serifTitle leading-tight truncate">Data Analysis</span>
+        </div>
+        <div class="topic-item">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#e2583e] shrink-0"></span>
+          <span class="text-white font-serifTitle leading-tight truncate">Marketing &amp; Sales</span>
+        </div>
+      </div>
+
+      <!-- 2. NEXT: THE VIDEO (TRUE 16:9 RECTANGLE - NEVER SQUISHED) -->
+      <div class="w-full flex flex-col items-center justify-center shrink-0">
+        <div class="video-rectangle-box border border-avg-orange/50">
+          <iframe 
+            id="socio-video"
+            src="https://www.youtube-nocookie.com/embed/fwVA6LasJgU?rel=0&modestbranding=1&playsinline=1" 
+            title="Socio Digital &amp; Broadcasting Showcase"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="w-full max-w-[360px] flex items-center justify-between text-[9px] font-mono text-slate-400 mt-0.5 px-1">
+          <span class="text-avg-orange font-semibold">16:9 Cinema Reel</span>
+          <a href="https://youtu.be/fwVA6LasJgU" target="_blank" class="hover:text-avg-orange transition-colors flex items-center gap-1 font-semibold">
+            <span>Watch on YouTube</span>
+            <span>&nearr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. AND: FULL IMAGES (3:4 PORTRAIT MAGAZINES - CLEAN, NO CAPTIONS) -->
+      <div class="bg-black/40 border border-white/10 rounded-lg p-1.5 shrink-0">
+        <div class="grid grid-cols-3 gap-2">
+          <!-- Cover 1: Minnal Parithi -->
+          <div class="full-image-card full-image-card-orange border border-white/20 p-1" onclick="openShowcaseModal(3)" title="Click to expand">
+            <img src="mag1.jpg" alt="Minnal Parithi Magazine" loading="lazy">
           </div>
-          <div class="topic-item">
-            <span class="w-2 h-2 rounded-full bg-[#e2583e] shrink-0"></span>
-            <span class="text-white font-serifTitle">Broadcasting</span>
+          <!-- Cover 2: Limitless Luminaries -->
+          <div class="full-image-card full-image-card-orange border border-white/20 p-1" onclick="openShowcaseModal(4)" title="Click to expand">
+            <img src="mag2.png" alt="Limitless Luminaries Magazine" loading="lazy">
           </div>
-          <div class="topic-item">
-            <span class="w-2 h-2 rounded-full bg-[#e2583e] shrink-0"></span>
-            <span class="text-white font-serifTitle">Social Media Despatch</span>
-          </div>
-          <div class="topic-item">
-            <span class="w-2 h-2 rounded-full bg-[#e2583e] shrink-0"></span>
-            <span class="text-white font-serifTitle">Data Analysis</span>
-          </div>
-          <div class="topic-item">
-            <span class="w-2 h-2 rounded-full bg-[#e2583e] shrink-0"></span>
-            <span class="text-white font-serifTitle">Digital Marketing</span>
-          </div>
-          <div class="topic-item">
-            <span class="w-2 h-2 rounded-full bg-[#e2583e] shrink-0"></span>
-            <span class="text-white font-serifTitle">Marketing &amp; Sales</span>
+          <!-- Cover 3: Feathers -->
+          <div class="full-image-card full-image-card-orange border border-white/20 p-1" onclick="openShowcaseModal(5)" title="Click to expand">
+            <img src="mag3.jpg" alt="Feathers Magazine" loading="lazy">
           </div>
         </div>
-
-        <!-- Right: Small Video Frame -->
-        <div class="lg:col-span-5">
-          <div class="rounded-lg overflow-hidden bg-black border border-avg-orange/40 aspect-video w-full max-h-[175px] mx-auto shadow-md">
-            <iframe 
-              src="https://drive.google.com/file/d/1_u4XxKpR_t1RUlyRbSELQnuurzpSTS_s/preview" 
-              title="Socio Digital & Broadcasting Video"
-              class="w-full h-full border-0" 
-              allow="autoplay; fullscreen" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
       </div>
 
     </div>
 
   </main>
 
-  <!-- BOTTOM FOOTER (COMPACT) -->
-  <footer class="flex items-center justify-between px-3 py-1.5 border-t border-white/10 text-[11px] font-mono text-slate-400 mt-2">
-    <div>AVG Graphics &bull; Expo Edition</div>
-    <div class="text-slate-300 font-bold">www.avg.graphics</div>
-    <div>&copy; 2026</div>
+  <!-- ==================================================================== -->
+  <!-- BOTTOM FOOTER (MINIMAL ECOSYSTEM ROW)                                -->
+  <!-- ==================================================================== -->
+  <footer class="flex flex-wrap items-center justify-between px-2.5 py-1 border-t border-white/10 text-[9px] sm:text-[9.5px] font-mono text-slate-400 mt-1 w-full max-w-7xl mx-auto gap-2 shrink-0">
+    <div class="flex items-center gap-1.5">
+      <span class="w-1.5 h-1.5 rounded-full bg-avg-cyan animate-pulse"></span>
+      <span class="text-slate-400 font-semibold uppercase tracking-wider">AVG Graphics Ecosystem:</span>
+      <span class="text-slate-300">India &bull; UAE &bull; Global Pre-Media</span>
+    </div>
+    
+    <div class="flex items-center gap-3 font-bold text-slate-400">
+      <a href="https://www.avg.graphics" target="_blank" class="text-avg-cyan hover:underline">www.avg.graphics</a>
+      <span>&bull;</span>
+      <span class="text-slate-500">&copy; 2026 Expo Edition</span>
+    </div>
   </footer>
+
+  <!-- ==================================================================== -->
+  <!-- GLOBAL OFFER 20% DISCOUNT POP-UP MODAL (TRIGGERED FROM TOP STAR BADGE)-->
+  <!-- ==================================================================== -->
+
+  <!-- Star Offer Pop-Up Modal Dialog -->
+  <div id="offer-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4" onclick="closeOfferModal()">
+    <div class="relative max-w-sm w-full bg-avg-card border-2 border-amber-400 rounded-2xl p-4 sm:p-5 shadow-[0_0_50px_rgba(245,158,11,0.4)] text-center flex flex-col items-center" onclick="event.stopPropagation()">
+      
+      <!-- Close Button -->
+      <button onclick="closeOfferModal()" class="absolute top-2.5 right-2.5 text-slate-400 hover:text-white text-lg font-bold w-7 h-7 rounded-full bg-white/10 flex items-center justify-center leading-none">
+        &times;
+      </button>
+
+      <!-- Big Star Emblem -->
+      <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 flex items-center justify-center text-2xl sm:text-3xl shadow-lg border-2 border-yellow-100 mb-2">
+        ★
+      </div>
+
+      <div class="text-[9.5px] font-mono tracking-widest text-amber-400 uppercase font-black">
+        EXCLUSIVE EXPO PRIVILEGE
+      </div>
+      <h3 class="text-xl sm:text-2xl font-display font-extrabold text-white mt-0.5">
+        GLOBAL <span class="text-amber-400">20% DISCOUNT</span>
+      </h3>
+      <p class="text-xs text-slate-300 mt-2 font-sans leading-relaxed">
+        Special privilege for registered Expo attendees &amp; global partners. Avail <strong>20% discount</strong> across all Print &amp; Packaging Pre-Media and Socio-Broadcasting orders.
+      </p>
+
+      <!-- Direct Contact Actions -->
+      <div class="mt-4 flex flex-col gap-2 w-full font-mono text-xs font-bold">
+        <a href="https://wa.me/919840401565?text=Hello%20AVG%20Graphics,%20I%20would%20like%20to%20claim%20the%2020%%20Global%20Discount%20Offer" target="_blank" 
+           class="w-full py-2.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center gap-2 shadow-md transition-all">
+          <span>💬 Claim on WhatsApp (+91 9840401565)</span>
+        </a>
+        <a href="tel:+971501840539" 
+           class="w-full py-2 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 flex items-center justify-center gap-2 transition-all">
+          <span>☎ UAE Call: +971 501840539</span>
+        </a>
+        <a href="mailto:gkp@avg.graphics?subject=Claim%2020%%20Global%20Discount%20Offer" 
+           class="w-full py-2 px-3 rounded-lg bg-avg-cyan/15 hover:bg-avg-cyan/25 text-avg-cyan border border-avg-cyan/40 flex items-center justify-center gap-2 transition-all">
+          <span>✉ Email: gkp@avg.graphics</span>
+        </a>
+      </div>
+
+      <div class="text-[9px] font-mono text-slate-400 mt-3">
+        *Offer code: <strong class="text-amber-400">AVG-EXPO20</strong> &bull; Click anywhere outside to close
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- LIGHTWEIGHT HIGH-RES LIGHTBOX MODAL (SHOWS 100% OF IMAGES FULL SIZE) -->
+  <!-- ==================================================================== -->
+  <div id="showcase-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-3" onclick="closeShowcaseModal()">
+    <div class="relative max-w-sm sm:max-w-md md:max-w-lg w-full max-h-[92vh] flex flex-col items-center bg-avg-card p-3 rounded-xl border border-white/20 shadow-2xl" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="w-full flex items-center justify-between pb-1.5 mb-1.5 border-b border-white/10">
+        <span id="showcase-modal-title" class="text-xs font-mono font-bold uppercase tracking-wider text-avg-cyan">Full Image Preview</span>
+        <button onclick="closeShowcaseModal()" class="text-slate-400 hover:text-white text-lg font-bold px-2 py-0.5 rounded bg-white/10 leading-none">
+          &times;
+        </button>
+      </div>
+
+      <!-- Image Display with Prev/Next Controls -->
+      <div class="relative w-full flex items-center justify-center my-1">
+        <button onclick="prevShowcaseItem()" class="absolute left-1 z-10 bg-black/70 hover:bg-black/90 text-white rounded-full p-2.5 text-sm border border-white/20 cursor-pointer shadow-lg">&larr;</button>
+        <img id="showcase-modal-img" src="" alt="High-Res Preview" class="w-auto max-h-[66vh] rounded-lg shadow-2xl border border-white/20 object-contain">
+        <button onclick="nextShowcaseItem()" class="absolute right-1 z-10 bg-black/70 hover:bg-black/90 text-white rounded-full p-2.5 text-sm border border-white/20 cursor-pointer shadow-lg">&rarr;</button>
+      </div>
+
+      <!-- Modal Caption & Counter -->
+      <div id="showcase-modal-caption" class="text-xs font-mono text-slate-300 mt-2 text-center leading-snug font-medium"></div>
+      <div class="mt-1.5 flex items-center justify-between w-full text-[9px] font-mono text-slate-400 px-1">
+        <span>Click anywhere outside to close &bull; Arrow keys navigate</span>
+        <span id="showcase-modal-counter" class="text-avg-cyan font-bold">1 / 6</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Gallery Items Array (Full metadata in zoom modal)
+    const galleryItems = [
+      { src: 'pkg1.jpg', title: 'Print & Packaging Production', caption: 'Luxury Folding Carton Packaging — Foil Stamping, Spot UV & Precision Creasing', type: 'cyan' },
+      { src: 'pkg2.jpg', title: 'Print & Packaging Production', caption: 'Premium Flexible Packaging — Stand-Up Pouch with Vivid Gravure Separation', type: 'cyan' },
+      { src: 'pkg3.jpg', title: 'Print & Packaging Production', caption: 'High-End Spirits Label & Bottle — Micro-Embossed Cotton Paper with Hot Gold Stamping', type: 'cyan' },
+      { src: 'mag1.jpg', title: 'Magazine Publishing Showcase', caption: 'Minnal Parithi — Weekly Global Media & Worldwide Broadcast', type: 'orange' },
+      { src: 'mag2.png', title: 'Magazine Publishing Showcase', caption: 'Limitless Luminaries — The Power of Perspective (Saumen Chakraborty & Khadeer Peer Shariff)', type: 'orange' },
+      { src: 'mag3.jpg', title: 'Magazine Publishing Showcase', caption: 'Feathers — Women Creative Connect Community Anthology', type: 'orange' }
+    ];
+
+    let currentItemIndex = 0;
+
+    function openShowcaseModal(index) {
+      currentItemIndex = index;
+      renderModalItem();
+      document.getElementById('showcase-modal').classList.remove('hidden');
+    }
+
+    function renderModalItem() {
+      const item = galleryItems[currentItemIndex];
+      document.getElementById('showcase-modal-img').src = item.src;
+      document.getElementById('showcase-modal-caption').textContent = item.caption;
+      document.getElementById('showcase-modal-counter').textContent = `${currentItemIndex + 1} / ${galleryItems.length}`;
+      
+      const titleEl = document.getElementById('showcase-modal-title');
+      titleEl.textContent = item.title;
+      if (item.type === 'orange') {
+        titleEl.className = 'text-xs font-mono text-avg-orange font-bold uppercase tracking-wider';
+      } else {
+        titleEl.className = 'text-xs font-mono text-avg-cyan font-bold uppercase tracking-wider';
+      }
+    }
+
+    function nextShowcaseItem() {
+      currentItemIndex = (currentItemIndex + 1) % galleryItems.length;
+      renderModalItem();
+    }
+
+    function prevShowcaseItem() {
+      currentItemIndex = (currentItemIndex - 1 + galleryItems.length) % galleryItems.length;
+      renderModalItem();
+    }
+
+    function closeShowcaseModal() {
+      document.getElementById('showcase-modal').classList.add('hidden');
+    }
+
+    // Star Offer Modal Functions
+    function toggleOfferModal() {
+      const modal = document.getElementById('offer-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function closeOfferModal() {
+      document.getElementById('offer-modal').classList.add('hidden');
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeShowcaseModal();
+        closeOfferModal();
+      }
+      if (!document.getElementById('showcase-modal').classList.contains('hidden')) {
+        if (e.key === 'ArrowRight') nextShowcaseItem();
+        if (e.key === 'ArrowLeft') prevShowcaseItem();
+      }
+    });
+
+    // Kiosk Fullscreen Mode Toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+  </script>
 
 </body>
 </html>
