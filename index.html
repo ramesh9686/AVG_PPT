@@ -84,13 +84,12 @@
       border-color: rgba(255, 255, 255, 0.2);
     }
 
-    /* True 16:9 Cinema Rectangle Video Box - Never Squished, Never Collapsed */
+    /* True 16:9 Cinema Rectangle Video Box - Never Squished, Pure Math Across All Screens */
     .video-rectangle-box {
       position: relative;
       width: 100%;
       max-width: 360px;
       aspect-ratio: 16 / 9;
-      min-height: 175px;
       flex-shrink: 0;
       border-radius: 8px;
       overflow: hidden;
@@ -101,7 +100,6 @@
     @media (max-width: 640px) {
       .video-rectangle-box {
         max-width: 100%;
-        min-height: 180px;
       }
     }
 
