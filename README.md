@@ -58,6 +58,8 @@ Ultra-compact, zero-scroll single-page architecture built specifically for **Exp
 3. **Removed All Image Captions**: Stripped the text labels ("Packaging Production Gallery", "Cartons", "Pouches", "Labels", "Minnal Parithi", "Luminaries", "Feathers") from both departments so that the 3:4 portrait images stand pure and prominent with maximum visual real estate. Full details remain accessible upon clicking each image via the high-resolution lightbox modal.
 4. **Added the 4 Ecosystem Links in the Top**: Positioned `www.avg.graphics` • `www.minnalparithi.com` • `www.360cc.org` • `www.369cc.org` right below `GRAPHIC INTELLIGENCE` in the top center.
 5. **Global Offer 20% Discount Star Badge (Moved to Top Header)**: Positioned an animated, pulsing gold star badge in the top-left header beside the logo. Clicking it opens the exclusive Expo privilege modal with 1-click WhatsApp (`+91 9840401565`), UAE direct call (`+971 501840539`), and email (`gkp@avg.graphics`) actions. Completely cleaned the bottom corner.
+6. **Original Grey Background (`#6b7280` / Neutral Grey)**: Applied true, unambiguous original grey for the website background with high-contrast `#181c24` cards, header, and footer.
+7. **Packaging Products Group Photo (`pkg1.jpg`)**: Replaced the single carton photo with a commercial studio group showcase featuring an assortment of folding cartons, stand-up pouches, and labeled bottles.
 
 ---
 

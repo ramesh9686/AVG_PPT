@@ -33,9 +33,9 @@
           },
           colors: {
             avg: {
-              dark: '#070a12',
-              card: '#0c1322',
-              border: '#1e293b',
+              dark: '#6b7280',
+              card: '#181c24',
+              border: '#4b5563',
               cyan: '#00f0ff',
               orange: '#ff5c28',
               orangeDot: '#e2583e',
@@ -53,7 +53,7 @@
     }
 
     html, body {
-      background-color: #070a12;
+      background-color: #6b7280;
       color: #f1f5f9;
       font-family: 'Plus Jakarta Sans', sans-serif;
       margin: 0;
@@ -64,8 +64,8 @@
     }
 
     .topic-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 6px;
       padding: 4px 8px;
       font-size: 11px;
@@ -80,8 +80,8 @@
     }
 
     .topic-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
     /* True 16:9 Cinema Rectangle Video Box - Never Squished, Pure Math Across All Screens */
@@ -119,7 +119,7 @@
       aspect-ratio: 3 / 4;
       border-radius: 6px;
       overflow: hidden;
-      background: #050811;
+      background: #12151b;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -166,7 +166,7 @@
   <!-- TOP HEADER ROW:                                                      -->
   <!-- LEFT: LOGO | CENTER: GRAPHIC INTELLIGENCE + 4 LINKS | RIGHT: CONTACTS-->
   <!-- ==================================================================== -->
-  <header class="w-full max-w-7xl mx-auto px-2 sm:px-3 py-1.5 flex flex-col md:flex-row items-center justify-between gap-2 border-b border-white/10 shrink-0 mb-1">
+  <header class="w-full max-w-7xl mx-auto px-2.5 sm:px-3 py-1.5 flex flex-col md:flex-row items-center justify-between gap-2 border border-white/20 bg-black/40 backdrop-blur-md rounded-xl shadow-lg shrink-0 mb-1">
     
     <!-- LEFT SIDE: AVG GRAPHICS LOGO + 20% DISCOUNT STAR BADGE -->
     <div class="flex items-center justify-center md:justify-start gap-2.5 w-full md:w-1/4 shrink-0">
@@ -299,9 +299,9 @@
       <!-- 3. AND: FULL IMAGES (3:4 PORTRAIT PHOTOS - CLEAN, NO CAPTIONS) -->
       <div class="bg-black/40 border border-white/10 rounded-lg p-1.5 shrink-0">
         <div class="grid grid-cols-3 gap-2">
-          <!-- Photo 1: Luxury Carton -->
+          <!-- Photo 1: Group of Print & Packaging Products -->
           <div class="full-image-card full-image-card-cyan border border-white/20 p-1" onclick="openShowcaseModal(0)" title="Click to expand">
-            <img src="pkg1.jpg" alt="Packaging Showcase 1" loading="lazy">
+            <img src="pkg1.jpg?v=group" alt="Group of Print and Packaging Products" loading="lazy">
           </div>
           <!-- Photo 2: Flexible Pouch -->
           <div class="full-image-card full-image-card-cyan border border-white/20 p-1" onclick="openShowcaseModal(1)" title="Click to expand">
@@ -403,7 +403,7 @@
   <!-- ==================================================================== -->
   <!-- BOTTOM FOOTER (MINIMAL ECOSYSTEM ROW)                                -->
   <!-- ==================================================================== -->
-  <footer class="flex flex-wrap items-center justify-between px-2.5 py-1 border-t border-white/10 text-[9px] sm:text-[9.5px] font-mono text-slate-400 mt-1 w-full max-w-7xl mx-auto gap-2 shrink-0">
+  <footer class="flex flex-wrap items-center justify-between px-3 py-1 border border-white/20 bg-black/40 backdrop-blur-md rounded-xl shadow-lg text-[9px] sm:text-[9.5px] font-mono text-slate-200 mt-1 w-full max-w-7xl mx-auto gap-2 shrink-0">
     <div class="flex items-center gap-1.5">
       <span class="w-1.5 h-1.5 rounded-full bg-avg-cyan animate-pulse"></span>
       <span class="text-slate-400 font-semibold uppercase tracking-wider">AVG Graphics Ecosystem:</span>
@@ -500,7 +500,7 @@
   <script>
     // Gallery Items Array (Full metadata in zoom modal)
     const galleryItems = [
-      { src: 'pkg1.jpg', title: 'Print & Packaging Production', caption: 'Luxury Folding Carton Packaging — Foil Stamping, Spot UV & Precision Creasing', type: 'cyan' },
+      { src: 'pkg1.jpg?v=group', title: 'Group of Print & Packaging Products', caption: 'Complete Packaging Product Range — Folding Cartons, Stand-Up Pouches, Labels & Luxury Rigid Box Assortment', type: 'cyan' },
       { src: 'pkg2.jpg', title: 'Print & Packaging Production', caption: 'Premium Flexible Packaging — Stand-Up Pouch with Vivid Gravure Separation', type: 'cyan' },
       { src: 'pkg3.jpg', title: 'Print & Packaging Production', caption: 'High-End Spirits Label & Bottle — Micro-Embossed Cotton Paper with Hot Gold Stamping', type: 'cyan' },
       { src: 'mag1.jpg', title: 'Magazine Publishing Showcase', caption: 'Minnal Parithi — Weekly Global Media & Worldwide Broadcast', type: 'orange' },
